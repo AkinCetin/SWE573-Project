@@ -1,1 +1,1 @@
-from .tag import TagModel
+from .TagModel import TagModel

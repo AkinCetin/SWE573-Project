@@ -7,3 +7,8 @@ class TagModel(models.Model):
 
     class Meta:
         db_table = 'tags'
+        verbose_name_plural = 'Tags'
+        verbose_name = 'Tag'
+
+    def __str__(self):
+        return self.name

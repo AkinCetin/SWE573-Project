@@ -2,12 +2,13 @@ from django.db import models
 from autoslug import AutoSlugField
 from SWE573_Project.models import TagModel
 from django.contrib.auth.models import User
+from ckeditor.fields import RichTextField
 
 class ArticleModel (models.Model):
     title = models.CharField(max_length=100)
-    body = models.TextField()
+    body = RichTextField()
     authors = models.CharField(max_length=150)
-    publish_date = models.DateTimeField(auto_created=True) #pubmed tarihini çekmek araştırılacak
+    publish_date = models.DateTimeField(auto_now_add=True) #pubmed tarihini çekmek araştırılacak
     update_date = models.DateTimeField(auto_now_add=True)
     slug = AutoSlugField(populate_from = 'title', unique=True)
     tags = models.ManyToManyField(TagModel, related_name='article')

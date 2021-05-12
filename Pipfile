@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 django = "==3.2.2"
 django-autoslug = "*"
+django-ckeditor = "*"
 
 [dev-packages]
 

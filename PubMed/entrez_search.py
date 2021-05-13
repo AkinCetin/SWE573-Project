@@ -1,21 +1,16 @@
-
 # importing the requests library
 import requests
 from bs4 import BeautifulSoup
 
-
 # api-endpoint
-URL = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
-
-
-# defining a params dict for the parameters to be sent to the API
-PARAMS = {'term':'brain',
-#'version': '2.0',
-'db': 'pubmed',
-}
+Search_URL = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
 
 # sending get request and saving the response as response object
-r = requests.get(url = URL, params = PARAMS)
+r = requests.get(url=Search_URL, params={'term': 'brain',
+                                         # 'version': '2.0',
+                                         'db': 'pubmed',
+                                         'api_key': '3063d8b2cf50fafdb90195ee618a9e80e909',
+                                         })
 
 # extracting data in json format
 data = r.content
@@ -23,23 +18,68 @@ data = r.content
 soup = BeautifulSoup(data, 'lxml')
 
 
-#print(soup.title.string)
+# print(soup.title.string)
 
-#print(soup.authors)
+# print(soup.authors)
 
 article_id = []
 
 for a in soup.find_all('id'):
     article_id.append(a.string)
-    
-    
-print(article_id)
 
-#abstract entrezde yok hocaya sorulacak.
+# api-endpoint
+Search_URL = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
 
 
+# sending get request and saving the response as response object
+r = requests.get(url=Search_URL, params={'id': 16776593,  # ','.join(article_id)
+                                         # 'version': '2.0',
+                                         'db': 'pubmed',
+                                         'api_key': '3063d8b2cf50fafdb90195ee618a9e80e909',
+                                         })
+
+# extracting data in json format
+data = r.content
+
+soup = BeautifulSoup(data, 'lxml')
+
+print(soup)
 
 
+# print(article_id)
 
 
+# api-endpoint
+Summary_URL = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi"
 
+str1 = ','.join(article_id)
+
+# sending get request and saving the response as response object
+r = requests.get(url=Summary_URL, params={'id': str1,
+                                          'version': '2.0',
+                                          'db': 'pubmed',
+                                          })
+
+# extracting data in json format
+data = r.content
+
+soup = BeautifulSoup(data, 'lxml')
+
+General_article = []
+
+# print(soup.title.string)
+
+# print(soup.find_all('documentsummary'))
+# print(soup)
+for article in soup.find_all('documentsummary'):
+    General_article_authors = []
+    for a in article.find_all('author'):
+        General_article_authors.append(a.find('name').string)
+        # print(a.find('name').string)
+    General_article.append({'id': article.get('uid'), 'title': soup.title.string,
+                            'authors': ','.join(General_article_authors)})
+
+# print(General_article)
+
+
+# abstract entrezde yok hocaya sorulacak.

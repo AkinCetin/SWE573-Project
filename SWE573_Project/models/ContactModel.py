@@ -6,9 +6,10 @@ class ContactModel(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     message = models.CharField(max_length=255)
 
-    class Meta(self):
+    class Meta:
         db_table = 'Contacts'
         verbose_name = 'Contact'
         verbose_name_plural= 'Contacts'
 
-
+    def __str__(self):
+        return self.email

@@ -1,7 +1,12 @@
 from django.contrib import admin
-from SWE573_Project.models import TagModel, ArticleModel
+from SWE573_Project.models import TagModel, ArticleModel, ContactModel
 
-admin.site.register(TagModel)
+
+
+class TagAdmin(admin.ModelAdmin):
+    search_fields = ('name',)
+
+admin.site.register(TagModel,TagAdmin)
 
 class ArticleAdmin(admin.ModelAdmin):
     search_fields = ('title', 'body')
@@ -10,3 +15,9 @@ class ArticleAdmin(admin.ModelAdmin):
     )
 
 admin.site.register(ArticleModel, ArticleAdmin)
+
+class ContactAdmin(admin.ModelAdmin):
+    search_fields = ('name', 'email',)
+    list_display = ('name', 'email', 'date',)
+
+admin.site.register(ContactModel, ContactAdmin)

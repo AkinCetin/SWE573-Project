@@ -13,6 +13,7 @@ class ArticleAdmin(admin.ModelAdmin):
     list_display = (
         'title', 'publish_date'
     )
+    list_filter = ('publish_date',)
 
 admin.site.register(ArticleModel, ArticleAdmin)
 

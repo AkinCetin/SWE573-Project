@@ -1,6 +1,8 @@
 # importing the requests library
 import requests
 from bs4 import BeautifulSoup
+from django.utils.text import slugify
+from SWE573_Project.models import ArticleModel
 
 
 # api-endpoint
@@ -32,13 +34,13 @@ for a in soup.find_all('id'):
 
 
 # api-endpoint
-Summary_URL = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi"
+Summary_URL = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
 
 str1 = ','.join(article_id)
 
 # sending get request and saving the response as response object
 r = requests.get(url=Summary_URL, params={'id': str1,
-                                          'version': '2.0',
+                                          'retmode': 'xml',
                                           'db': 'pubmed',
                                           })
 
@@ -53,15 +55,15 @@ General_article = []
 
 # print(soup.find_all('documentsummary'))
 # print(soup)
-for article in soup.find_all('documentsummary'):
+for article in soup.find_all('pubmedarticle'):
     General_article_authors = []
     for a in article.find_all('author'):
-        General_article_authors.append(a.find('name').string)
+        General_article_authors.append(a.find('forename').string + ' ' + a.find('lastname').string)
         # print(a.find('name').string)
-    General_article.append({'id': article.get('uid'), 'title': soup.title.string,
-                            'authors': ','.join(General_article_authors)})
+    #article.find('abstract').get_text()
+    General_article.append({'id': article.find('pmid').string, 'title': soup.title.string,
+                            'authors': ','.join(General_article_authors),
+                            'abstract':article.find('abstract').get_text()})
 
-print(General_article)
+#print(General_article)
 
-
-# abstract entrezde yok hocaya sorulacak.

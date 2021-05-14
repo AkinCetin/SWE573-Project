@@ -12,7 +12,7 @@ class ArticleModel (models.Model):
     update_date = models.DateTimeField(auto_now_add=True)
     slug = AutoSlugField(populate_from = 'title', unique=True)
     tags = models.ManyToManyField(TagModel, related_name='article')
-    user = models.ForeignKey(User, on_delete=models.CASCADE ,related_name= 'article')
+    user = models.ForeignKey('account.CustomUserModel', on_delete=models.CASCADE ,related_name= 'article')
 
     class Meta:
         db_table = 'articles'

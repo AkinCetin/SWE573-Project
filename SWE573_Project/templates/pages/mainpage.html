@@ -4,17 +4,27 @@
 
 {% block content %}
 
+{% for article in articles %}
+
 <div class="card mb-3">
     <div class="row g-0">
       <div class="col-sm-12">
         <div class="card-body mb-3">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          <h5 class="card-title">{{ article.title }}</h5>
+          <p class="card-text">{{ article.body|safe|truncatechars_html:300 }}</p>
+          <!--<p class="card-text">{{ article.body|safe|truncatechars_html:300 }}</p> kewords çekilip buraya eklenmeli-->
+          <p class="card-text"><small class="text-muted">Publish Date {{ article.publish_date }}</small></p>
+          <p class="card-text"><small class="text-muted">Last Update {{ article.update_date|timesince }}</small></p>
+
         </div>
       </div>
     </div>
   </div>
+{% empty %}
+
+<p>yazı yok</p>
+
+{% endfor %}
 
   <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-end">

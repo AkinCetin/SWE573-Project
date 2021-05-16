@@ -3,5 +3,7 @@ from django.http import HttpResponse
 
 
 def contact(request):
-    
-    return render(request, 'pages/contacts.html', context={})
+    context = {
+        'key': 'baslik'
+    }
+    return render(request, 'pages/contacts.html', context=context)

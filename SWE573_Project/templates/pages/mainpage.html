@@ -4,6 +4,8 @@
 
 {% block content %}
 
+{% if request.user.is_authenticated %}
+
 {% for article in articles %}
 
 <div class="card mb-3">
@@ -22,7 +24,7 @@
   </div>
 {% empty %}
 
-<p>yazı yok</p>
+<p>We couldn't find any article related to your search.</p>
 
 {% endfor %}
 
@@ -70,6 +72,8 @@
 
       {% else %}
 
+      {% if articles.has_previous %}
+
       <li class="page-item"><a class="page-link" href="#">{{ articles.previous_page_number }}</a></li>
       <li class="page-item"><a class="page-link" href="#">{{ articles.number }}</a></li>
       
@@ -77,15 +81,54 @@
         <a class="page-link" href="?page= {{ articles.previous_page_number }}" tabindex="-1" aria-disabled="true">Next</a>
       </li>
 
+      {% else %}
+
+      {% endif %}
+
       {% endif %}
 
       <li class="page-item ">
         <a class="page-link" href="?page= {{ articles.paginator.num_pages }}" tabindex="-1" aria-disabled="true">Last</a>
       </li>
       
-      
+     
       
     </ul>
   </nav>
+
+  {% else %}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container login-container">
+            <div class="row">
+                <div class="col-md-6 login-form-1">
+                </div>
+                <div class="col-sm-6 login-form-2">
+                    <h3>Login</h3>
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Your Email *" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Your Password *" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btnSubmit" value="Login" />
+                        </div>
+                        <div class="form-group">
+                            <a href="#" class="ForgetPwd" value="Login">Forgot Password?</a>
+                        </div>
+                        <div class="form-group">
+                          <a href="#" class="ForgetPwd" value="Login">You don't haven an account?</a>
+                      </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+{% endif %}
+
 
 {% endblock %}

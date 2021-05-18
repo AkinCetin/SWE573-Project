@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ article.title }} {% endblock %}
+
+{% block content %}
+
+{% if request.user.is_authenticated %}
+
+
+
+<div class="card mb-3">
+    <div class="row g-0">
+      <div class="col-sm-12">
+        <div class="card-body mb-3">
+          <h5 class="card-title">{{ article.title }}</h5>
+          <h6 class="card-text">Author(s): {{ article.authors|safe }}</h6>
+          <p class="card-text">{{ article.body|safe }}</h5>
+          <!--<p class="card-text">{{ article.body|safe|truncatechars_html:300 }}</p> kewords çekilip buraya eklenmeli-->
+          <p class="card-text"><small class="text-muted">Publish Date {{ article.publish_date }}</small></p>
+          <p class="card-text"><small class="text-muted">Last Update {{ article.update_date|timesince }}</small></p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  {% else %}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container login-container">
+            <div class="row">
+                <div class="col-md-6 login-form-1">
+                </div>
+                <div class="col-sm-6 login-form-2">
+                    <h3>Login</h3>
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Your Email *" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Your Password *" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btnSubmit" value="Login" />
+                        </div>
+                        <div class="form-group">
+                            <a href="#" class="ForgetPwd" value="Login">Forgot Password?</a>
+                        </div>
+                        <div class="form-group">
+                          <a href="#" class="ForgetPwd" value="Login">You don't haven an account?</a>
+                      </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+{% endif %}
+
+
+{% endblock %}

@@ -12,7 +12,6 @@ def mainpage(request):
             Q(title__icontains=search)|
             Q(body__icontains=search)
         ).distinct()
-    
     page = request.GET.get('page')
     paginator = Paginator(articles, 10)
     

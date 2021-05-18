@@ -7,12 +7,10 @@ def report(request):
     if request.method == 'POST': #formun validasyonu burada yapılıyor
         form = ReportForm(request.POST)
         if form.is_valid():
-            report = ReportModel()
-            report.email = form.cleaned_data['email'] #bir form yollandı ve sen bu validasyon sonrası yazıyı kaydetmek istiyorsun
-            report.name = form.cleaned_data['name']
-            report.message = form.cleaned_data['message']
-            report.save()
-            return redirect('mainpage')
+            user_id = request.user.id
+            article = request.article
+            form.save(user_id=user_id, article = article)
+            return redirect('homepage')
         
 
     context = {

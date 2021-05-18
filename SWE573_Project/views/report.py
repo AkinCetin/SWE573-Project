@@ -1,23 +1,22 @@
-from django.shortcuts import render, redirect #response icin render ve yönlendirme için form yollandıktan sonra redirect
-from SWE573_Project.forms import ReportForm #html olarak forms kısmında olusturduğumuz formu buraya import ediyoruz 
+from django.shortcuts import render, redirect 
+from SWE573_Project.forms import ReportForm 
 from SWE573_Project.models import ReportModel
+from SWE573_Project.models import ArticleModel
 
-def report(request):
-    form = ReportForm() #form initialize edildi
-    if request.method == 'POST': #formun validasyonu burada yapılıyor
+def report(request, article_id):
+    form = ReportForm() 
+    if request.method == 'POST': 
         form = ReportForm(request.POST)
         if form.is_valid():
             user_id = request.user.id
-            article = request.article
-            form.save(user_id=user_id, article = article)
-            return redirect('homepage')
+            form.save(user_id=user_id, article_id = article_id)
+            article = ArticleModel.objects.get(id = article_id)
+            return redirect('details', article.slug)
         
 
     context = {
-        'form' : form #form gönderebilmek için devamı template kısmında yapılacak
+        'form' : form 
     }
     return render(request, 'pages/report.html', context=context)
     
     
-    #HttpResponse('<h1>merhaba</1>') #pathe gelirlerse cevap dönmek icin olusutrulan 
-    #fonksiyon bunları view dosyalarına yazcaz ardindan bu config icindeki urlden cagirilir

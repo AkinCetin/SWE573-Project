@@ -11,7 +11,7 @@ urlpatterns = [
     path('', mainpage, name = 'homepage'),
     path('tag/<slug:tagSlug>', tag, name='tag'),
     path('details/<slug:slug>', details, name='details'),
-    path('report', report, name = 'report'),
+    path('report/<int:article_id>', report, name = 'report'),
 
 
 ]

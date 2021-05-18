@@ -12,6 +12,6 @@ class ReportForm(ModelForm): #gelen formun validasyonu viewde yapılıyor
         # do custom stuff
         if commit:
             m.user_id = kwargs.get('user_id')
-            m.article = kwargs.get('article')
+            m.article_id = kwargs.get('article_id')
             m.save()
         return m

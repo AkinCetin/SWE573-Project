@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'SWE573_Project',
     'ckeditor',
     'account',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -133,3 +134,6 @@ AUTH_USER_MODEL = 'account.CustomUserModel'
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4' #crispy formslar için bootstrap4 seçildi eklenmeli
+

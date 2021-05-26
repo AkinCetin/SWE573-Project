@@ -16,6 +16,6 @@ def mainpage(request):
     paginator = Paginator(articles, 10)
     
     
-    return render(request, 'pages/mainpage.html', context={
+    return render(request, 'pages/homepage.html', context={
         'articles': paginator.get_page(page)
     })

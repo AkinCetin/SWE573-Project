@@ -3,7 +3,12 @@
       Featured
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">An item</li>
+      <li class="list-group-item">
+        <a href="{% url 'homepage' %}">Homepage</a>
+    </li>
+    <li class="list-group-item">
+      <a href="{% url 'profilesettings' %}">Profile Settings</a>
+  </li>
       <li class="list-group-item">
         <a href="{% url 'changepassword' %}">Change Password</a>
     </li>

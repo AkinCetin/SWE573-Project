@@ -2,11 +2,11 @@
 {% load crispy_forms_tags %} <!--crispy formları kullanabilmek için önce indirdik pipenv install diyip ardından html dosyalarına da koyuyoruz-->
 
 
-{% block title %} Profile Settings {% endblock %} <!--sayfanın başlığı-->
+{% block title %} Create Account {% endblock %} <!--sayfanın başlığı-->
 
 {% block content %} 
     {% include 'components/message.html' %}
-<form enctype="multipart/form-data" method="POST">
+<form method="POST">
 
     {{ form.non_field_errors }}
 
@@ -14,7 +14,7 @@
     
     {{form | crispy }}   <!--oluşturduğumu iletişim formunu buraya direkt verince iletişim sayfasında yorumlanıyor html olarak navbar vs şeylere hala ihtiyaç var-->
     
-    <input type="Submit" class="mt-3 mb-3" value= "Submit Changes">
+    <input type="Submit" class="mt-3 mb-3" value= "Create">
 </form>
 
 

@@ -3,3 +3,5 @@ from .mainpage import mainpage
 from .tag import tag
 from .details import details
 from .report import report
+from .login import login
+from .createnewuser import createnewuser

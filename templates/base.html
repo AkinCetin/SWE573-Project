@@ -11,9 +11,13 @@
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body>
-    
+
+
+    {% if request.user.is_authenticated %}
 
     {% include 'components/navbar.html' %}
+
+    {% endif %}
             
             
       <div class = "container mt-3">
@@ -30,7 +34,12 @@
               
               <div class="col-sm-3">
 
-                  {% include 'components/sidebar.html' %}
+                {% if request.user.is_authenticated %}
+
+                {% include 'components/sidebar.html' %}
+            
+                {% endif %}
+
                 
               </div>
               
@@ -38,7 +47,11 @@
 
         <div class = "row">
 
+            {% if request.user.is_authenticated %}
+
             {% include 'components/footer.html' %}
+
+            {% endif %}
             
         </div>
       </div>

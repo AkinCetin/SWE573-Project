@@ -3,4 +3,4 @@ from django.shortcuts import redirect
 
 def logoutView(request):
     logout(request)
-    return redirect('homepage')
+    return redirect('login')

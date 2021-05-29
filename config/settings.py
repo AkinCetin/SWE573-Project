@@ -137,3 +137,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4' #crispy formslar için bootstrap4 seçildi eklenmeli
 
+LOGIN_REDIRECT_URL = '/'

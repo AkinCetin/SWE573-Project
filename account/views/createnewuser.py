@@ -8,7 +8,7 @@ def createnewuser(request):
         form = creationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('homepage')
+            return redirect('login')
     else:
         form = creationForm()
     return render(request, 'pages/createaccount.html', context={

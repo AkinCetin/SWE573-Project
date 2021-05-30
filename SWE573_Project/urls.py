@@ -8,7 +8,6 @@ from django.contrib.auth import views as auth_views
 from django.views.generic import TemplateView
 
 
-
 urlpatterns = [
     path('', auth_views.LoginView.as_view(
         template_name = 'pages/login.html'

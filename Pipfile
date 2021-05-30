@@ -8,6 +8,7 @@ django = "==3.2.2"
 django-autoslug = "*"
 django-ckeditor = "*"
 django-environ = "*"
+sentry-sdk = "*"
 
 [dev-packages]
 autopep8 = "*"

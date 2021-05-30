@@ -7,6 +7,7 @@ name = "pypi"
 django = "==3.2.2"
 django-autoslug = "*"
 django-ckeditor = "*"
+django-environ = "*"
 
 [dev-packages]
 autopep8 = "*"

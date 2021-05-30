@@ -129,3 +129,31 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 CRISPY_TEMPLATE_PACK = 'bootstrap4' #crispy formslar için bootstrap4 seçildi eklenmeli
 
 LOGIN_REDIRECT_URL = 'homepage'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'basic_info':{
+            'format': '{process:d} {thread:d} {asctime} {levelname} {message} {name}',
+            'style': '{'
+        }
+
+    },
+    'handlers':{
+        'console': {
+            'class': 'logging.StreamHandler'
+        },
+        'file':{
+            'class': 'logging.FileHandler',
+            'filename': 'logs/article_read_number.log',
+            'formatter': 'basic_info'
+        }
+    },
+    'loggers': {
+        'article_read_by': {
+            'handlers': ['console', 'file'],
+            'level': 'INFO'
+        }
+    }
+}

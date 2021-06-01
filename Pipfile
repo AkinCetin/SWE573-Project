@@ -9,6 +9,7 @@ django-autoslug = "*"
 django-ckeditor = "*"
 django-environ = "*"
 sentry-sdk = "*"
+python-dotenv = "*"
 
 [dev-packages]
 autopep8 = "*"

@@ -18,3 +18,6 @@ def tag(request, article_id):
         'form' : form 
     }
     return render(request, 'pages/tag.html', context=context)
+
+    
+    

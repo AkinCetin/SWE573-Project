@@ -1,0 +1,18 @@
+{% extends 'base.html' %} <!--bir bas html dosyası oluşturduk çünkü hepsini üstüne kullanıcaz config seetings dir üstünde güncellemesi var-->
+{% load crispy_forms_tags %} <!--crispy formları kullanabilmek için önce indirdik pipenv install diyip ardından html dosyalarına da koyuyoruz-->
+
+
+{% block title %} Tag {% endblock %} <!--sayfanın başlığı-->
+
+{% block content %} 
+   
+<form method="POST">
+    {{ form.non_field_errors }}
+    {% csrf_token %} <!--bir form gönderebilmek için bu eklenmeli validasyonla alakalı-->
+    {{form | crispy }}   <!--oluşturduğumu iletişim formunu buraya direkt verince iletişim sayfasında yorumlanıyor html olarak navbar vs şeylere hala ihtiyaç var-->
+    
+    <input type="Submit" class="mt-3 mb-3" value= "Send">
+</form>
+
+
+{% endblock %}

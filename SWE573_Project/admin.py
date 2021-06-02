@@ -6,7 +6,7 @@ from SWE573_Project.models import TagModel, ArticleModel, ContactModel, ReportMo
 class TagAdmin(admin.ModelAdmin):
     search_fields = ('name',)
 
-admin.site.register(TagModel,TagAdmin)
+admin.site.register(TagModel)
 
 class ArticleAdmin(admin.ModelAdmin):
     search_fields = ('title', 'body')

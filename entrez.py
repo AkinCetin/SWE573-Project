@@ -72,17 +72,6 @@ for term in TERMS:
 
         General_article = []
         General_article_keywords = []
-        
-
-        #for article in soup.find_all('pubmedarticle'):
-            
-            #for b in article.find_all('keywordlist'):
-           #     keyword = b.find_all('keyword')
-           #     if not keyword:
-            #        keyword = ''ß
-           #     else:
-            #        keyword = keyword.string
-            #    General_article_keywords.append(keyword)
 
         # print(soup.title.string)
 
@@ -104,6 +93,16 @@ for term in TERMS:
 
                 General_article_authors.append(
                     first_name + ' ' + last_name)
+                    
+                for b in article.find_all('keywordlist'):
+                    keyword = b.find('keyword')
+                    if not keyword:
+                        keyword = ''
+                    else:
+                        keyword = keyword.string
+
+                    General_article_keywords.append(keyword)
+                
 
                 # print(a.find('name').string)
             # article.find('abstract').get_text()
@@ -114,7 +113,7 @@ for term in TERMS:
             General_article.append({'id': article.find('pmid').string, 'title': article.find('title').string,
                                     'authors': ','.join(General_article_authors),
                                     'abstract': article.find('abstract').get_text() if article.find('abstract') else '',
-                                    #'keywords': ','.join(General_article_keywords),
+                                    'keywords': ','.join(General_article_keywords),
                                     'publish_date': article_date},)
 
         # print(General_article)

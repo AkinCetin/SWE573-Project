@@ -1,13 +1,20 @@
-from django.shortcuts import render, get_object_or_404
-from SWE573_Project.models import ArticleModel, TagModel
+from django.shortcuts import render, redirect
+from SWE573_Project.models import ArticleModel
+from SWE573_Project.forms import TagForm
 from django.core.paginator import Paginator
 
+def tag(request, article_id):
+    form = TagForm() 
+    if request.method == 'POST': 
+        form = TagForm(request.POST)
+        if form.is_valid():
+            user_id = request.user.id
+            form.save(user_id=user_id, article_id = article_id)
+            article = ArticleModel.objects.get(id = article_id)
+            return redirect('details', article.slug)
+        
 
-def tag(request, tagSlug):
-    tag = get_object_or_404(TagModel, slug=TagModel)
-    articles = TagModel.article.order_by('-id')
-    page = request.GET.get('page')
-    paginator = Paginator(articles, 10)
-    return render(request, 'pages/mainpage.html', context={
-        'articles': paginator.get_page(page)
-    })
+    context = {
+        'form' : form 
+    }
+    return render(request, 'pages/tag.html', context=context)

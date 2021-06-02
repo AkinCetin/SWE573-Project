@@ -17,7 +17,7 @@ urlpatterns = [
         template_name='pages/aboutus.html'
     ), name = 'aboutus'),
     path('homepage', mainpage, name = 'homepage'),
-    path('tag/<slug:tagSlug>', tag, name='tag'),
+    path('tag', tag, name='tag'),
     path('details/<slug:slug>', details, name='details'),
     path('report/<int:article_id>', report, name = 'report'),
 

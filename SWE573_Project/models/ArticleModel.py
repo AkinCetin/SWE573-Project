@@ -13,7 +13,7 @@ class ArticleModel (models.Model):
     created_date = models.DateTimeField(auto_now_add=True) #pubmed tarihini çekmek araştırılacak
     update_date = models.DateTimeField(auto_now_add=True)
     publish_date = models.DateField(null=True)
-    #keywords = models.CharField(max_length=255)
+    keywords = models.CharField(max_length=255)
     slug = AutoSlugField(populate_from = 'title', unique=True)
     tags = models.ManyToManyField(TagModel, related_name='article')
 

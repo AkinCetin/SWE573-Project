@@ -14,8 +14,6 @@ from pathlib import Path
 import os
 import environ
 
-env = environ.Env()
-environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -144,21 +142,3 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4' #crispy formslar için bootstrap4 seçildi e
 LOGIN_REDIRECT_URL = 'homepage'
 
 
-
-import sentry_sdk
-from sentry_sdk.integrations.django import DjangoIntegration
-
-sentry_sdk.init(
-
-    dsn='https://e6fb5f517c9947a6941d0f7c98bb46e2@o756599.ingest.sentry.io/5792213',
-    integrations=[DjangoIntegration()],
-
-    # Set traces_sample_rate to 1.0 to capture 100%
-    # of transactions for performance monitoring.
-    # We recommend adjusting this value in production.
-    traces_sample_rate=1.0,
-
-    # If you wish to associate users to errors (assuming you are using
-    # django.contrib.auth) you may enable sending PII data.
-    send_default_pii=True
-)

@@ -15,7 +15,7 @@
           <h5 class="card-title">{{ article.title }}</h5>
           <h6 class="card-text">Author(s): {{ article.authors|safe }}</h6>
           <p class="card-text">{{ article.body|safe }}</h5>
-          <!--<p class="card-text">{{ article.body|safe|truncatechars_html:300 }}</p> kewords çekilip buraya eklenmeli-->
+          <p class="card-text">Keyword(s): {{ article.keywords|safe }}</p>
           <p class="card-text"><small class="text-muted">Publish Date {{ article.publish_date }}</small></p>
           <p class="card-text"><small class="text-muted">Last Update {{ article.update_date|timesince }}</small></p>
 

@@ -10,7 +10,8 @@ def mainpage(request):
     if search:
         articles = articles.filter(
             Q(title__icontains=search)|
-            Q(body__icontains=search)
+            Q(body__icontains=search) |
+            Q(keywords__icontains=search)
         ).distinct()
     page = request.GET.get('page')
     paginator = Paginator(articles, 10)

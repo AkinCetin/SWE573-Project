@@ -19,7 +19,7 @@ import requests
 # api-endpoint
 Search_URL = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
 
-TERMS = ['lung', 'brain']
+TERMS = ['lung', 'brain', 'cancer', 'trauma', 'liver']
 for term in TERMS:
         
 
@@ -71,7 +71,7 @@ for term in TERMS:
         soup = BeautifulSoup(data, 'lxml')
 
         General_article = []
-        General_article_keywords = []
+        
 
         # print(soup.title.string)
 
@@ -79,6 +79,7 @@ for term in TERMS:
         # print(soup)
         for article in soup.find_all('pubmedarticle'):
             General_article_authors = []
+            General_article_keywords = []
             for a in article.find_all('author'):
                 first_name = a.find('forename')
                 last_name = a.find('lastname')
@@ -94,14 +95,18 @@ for term in TERMS:
                 General_article_authors.append(
                     first_name + ' ' + last_name)
                     
-                for b in article.find_all('keywordlist'):
-                    keyword = b.find('keyword')
-                    if not keyword:
-                        keyword = ''
-                    else:
-                        keyword = keyword.string
+            for b in article.find_all('keywordlist'):
+                keyword = b.find('keyword')
+                if not keyword:
+                    keyword = ''
+                else:
+                    keyword = keyword.string
 
-                    General_article_keywords.append(keyword)
+                General_article_keywords.append(keyword)
+
+            #print(General_article_keywords)
+
+
                 
 
                 # print(a.find('name').string)
@@ -121,5 +126,5 @@ for term in TERMS:
         for a in General_article:
             ArticleModel.objects.update_or_create(pmid=a.get('id'), defaults={
                 'title':a.get('title'), 'body':a.get('abstract'), 'authors':a.get(
-                'authors'), 'pmid': a.get('id'), 'publish_date':a.get('publish_date'), 'slug':slugify(a.get('title'))
+                'authors'), 'pmid': a.get('id'), 'publish_date':a.get('publish_date'), 'keywords': a.get('keywords'), 'slug':slugify(a.get('title'))
             })

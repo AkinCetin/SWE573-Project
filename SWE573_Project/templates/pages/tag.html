@@ -7,12 +7,60 @@
 {% block content %} 
    
 <form method="POST">
-    {{ form.non_field_errors }}
+    {{ form.errors }}
     {% csrf_token %} <!--bir form gönderebilmek için bu eklenmeli validasyonla alakalı-->
     {{form | crispy }}   <!--oluşturduğumu iletişim formunu buraya direkt verince iletişim sayfasında yorumlanıyor html olarak navbar vs şeylere hala ihtiyaç var-->
-    
-    <input type="Submit" class="mt-3 mb-3" value= "Send">
+    <p id="sonuc"></p>
+    <button type="Submit" class="mt-3 mb-3">Send</button>
+    <a href="javascript:history.back()"><button type="button" class="mt-3 mb-3">Back</button></a>
+
 </form>
 
 
+{% endblock %}
+
+{% block extra_script %}
+<script>
+
+$( function() {
+    var availableTags = [
+    ];
+
+    var link = "https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&errorformat=plaintext&language=en&uselang=en&type=item"
+
+
+    $( "#id_name" ).autocomplete({
+      source: function( request, response ) {
+        $.ajax( {
+          url: link,
+          dataType: "jsonp",
+          data: {
+            search: request.term
+          },
+          success: function( data ) {
+            var searchTerms = [];
+            data.search.forEach(element => {
+                searchTerms.push({
+                    id: element.id,
+                    label: element.label + " | " + element.description,
+                    value: element.label,
+                    desc: element.description,
+                    url: element.url
+                })
+            });
+            response(searchTerms);
+          }
+        } );
+      },
+      minLength: 2,
+      select: function( event, ui ) {
+        $('#sonuc').html(ui.item.desc);
+        $('#id_url').val("https://"+ui.item.url.replace('//', ''));
+      }
+    } );
+
+
+
+  } );
+</script>
 {% endblock %}

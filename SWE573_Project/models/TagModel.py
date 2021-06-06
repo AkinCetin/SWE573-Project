@@ -3,7 +3,8 @@ from django.db import models
 class TagModel(models.Model):
     name = models.CharField(max_length=255 ,blank=False)
     user = models.ForeignKey('account.CustomUserModel', on_delete=models.CASCADE ,related_name= 'tags', null=True)
-    
+    url = models.URLField(blank=True)
+
 
 
 

@@ -1,11 +1,13 @@
-from django.forms import ModelForm #form oluşturabilmek için form adında bir folder oluşturup init vb eklendikten sonra iletisimi olusturduk
+from django import forms #form oluşturabilmek için form adında bir folder oluşturup init vb eklendikten sonra iletisimi olusturduk
 #kullanıcıdan almak istediğimiz bilgileri burada field olarak belirleyeceğiz
 from SWE573_Project.models import TagModel
 
-class TagForm(ModelForm): #gelen formun validasyonu viewde yapılıyor
+class TagForm(forms.ModelForm): #gelen formun validasyonu viewde yapılıyor
+    url = forms.CharField(widget=forms.HiddenInput(), required=True)
+
     class Meta:
         model = TagModel
-        exclude = ['user', 'article']
+        exclude = ['user',]
 
     def save(self, commit=True, **kwargs):
         m = super(TagForm, self).save(commit=False)

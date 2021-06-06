@@ -10,7 +10,7 @@
           
         </ul>
         <form action= "{% url 'homepage' %}" class="d-flex">
-          <input class="form-control me-2" name = "search" type="search" placeholder="Search" aria-label="Search">
+          <input class="form-control me-2" name = "search" type="search" placeholder="Search" aria-label="Search" value="{{ request.GET.search }}">
           <button class="btn btn-success" type="submit">Search</button>
         </form>
       </div>

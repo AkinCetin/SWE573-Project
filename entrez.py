@@ -19,7 +19,7 @@ import requests
 # api-endpoint
 Search_URL = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
 
-TERMS = ['lung', 'brain', 'cancer', 'trauma', 'liver']
+TERMS = ['lung', 'brain', 'cancer']
 for term in TERMS:
         
 
@@ -115,7 +115,14 @@ for term in TERMS:
             if article_date:
                 article_date = datetime.strptime(article_date.find('year').string + '-' + article_date.find(
                     'month').string + '-' + article_date.find('day').string, '%Y-%m-%d')
-            General_article.append({'id': article.find('pmid').string, 'title': article.find('title').string,
+
+            if not article.find('articletitle'):
+                continue
+            if not article.find('articletitle').string:
+                continue
+
+
+            General_article.append({'id': article.find('pmid').string, 'title': article.find('articletitle').string,
                                     'authors': ','.join(General_article_authors),
                                     'abstract': article.find('abstract').get_text() if article.find('abstract') else '',
                                     'keywords': ','.join(General_article_keywords),

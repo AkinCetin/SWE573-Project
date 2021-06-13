@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-etkzfb$7wdn&-ye#!1z$kgivln^ib+pdgyh9v!2@-6j9#f!ev3
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['*', '18.159.254.52']
+ALLOWED_HOSTS = ['*']
 
 
 
@@ -82,23 +82,23 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+#DATABASES = {
+ #   'default': {
+  #      'ENGINE': 'django.db.backends.sqlite3',
+   #     'NAME': BASE_DIR / 'db.sqlite3',
+    #}
+#}
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'medisearch',
+        'USER': 'postgres',
+        'PASSWORD': 'urahara1',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
-
-#DATABASES = {
-   # 'default': {
-   #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-   #     'NAME': 'medisearch',
-   #     'USER': 'medisearchuser',
-  #      'PASSWORD': 'urahara1',
-   #     'HOST': 'localhost',
-  #      'PORT': '5432',
-  #  }
-#}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -155,23 +155,23 @@ LOGIN_REDIRECT_URL = 'homepage'
 
 #AWS AYARLARI
 
-AWS_ACCESS_KEY_ID = 'AKIAXQG5J22JMHWKRAXP'
+#AWS_ACCESS_KEY_ID = 'AKIAXQG5J22JMHWKRAXP'
 
-AWS_SECRET_ACCESS_KEY = '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'
+#AWS_SECRET_ACCESS_KEY = 'RP8PFgWbu2E1oXR3Ne/08JQSoUj36rqfJK/r+0sb'
 
-AWS_STORAGE_BUCKET_NAME = 'medisearchs3'
+#AWS_STORAGE_BUCKET_NAME = 'medisearchs3'
 
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+#AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
-AWS_S3_OBJECT_PARAMETERS = {
+#AWS_S3_OBJECT_PARAMETERS = {
 
-    'CacheControl': 'max-age=86400'
-}
+#    'CacheControl': 'max-age=86400'
+#}
 
-AWS_LOCATION = 'static'
+#AWS_LOCATION = 'static'
 
-STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+#STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+#STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-DEFAULT_FILE_STORAGE = 'config.storage_backend.MediaStorage'
+#DEFAULT_FILE_STORAGE = 'config.storage_backend.MediaStorage'

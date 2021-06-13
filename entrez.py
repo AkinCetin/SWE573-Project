@@ -19,7 +19,7 @@ import requests
 # api-endpoint
 Search_URL = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
 
-TERMS = ['lung', 'brain', 'cancer']
+TERMS = ['lung', 'brain', 'cancer', 'hearth', 'liver', 'stomach', 'head']
 for term in TERMS:
         
 
@@ -27,7 +27,7 @@ for term in TERMS:
     r = requests.get(url=Search_URL, params={'term': term,
                                             # 'version': '2.0',
                                             'db': 'pubmed',
-                                            'retmax': '400'
+                                            'retmax': '4000'
                                             })
 
     # extracting data in json format
@@ -120,6 +120,7 @@ for term in TERMS:
                 continue
             if not article.find('articletitle').string:
                 continue
+            
 
 
             General_article.append({'id': article.find('pmid').string, 'title': article.find('articletitle').string,

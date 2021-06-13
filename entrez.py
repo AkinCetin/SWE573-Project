@@ -33,7 +33,7 @@ for term in TERMS:
     r = requests.get(url=Search_URL, params={'term': term,
                                             # 'version': '2.0',
                                             'db': 'pubmed',
-                                            'retmax': '1000'
+                                            'retmax': '400'
                                             })
 
     # extracting data in json format

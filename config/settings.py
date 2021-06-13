@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-etkzfb$7wdn&-ye#!1z$kgivln^ib+pdgyh9v!2@-6j9#f!ev3'
+SECRET_KEY = env('SECRET_KEY')
 
 DEBUG = True
 
@@ -92,12 +92,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'medisearch',
-        'USER': 'postgres',
-        'PASSWORD': 'urahara1',
-        'HOST': 'host.docker.internal',
-        'PORT': '5432',
+        'ENGINE': env('ENGINE'),
+        'NAME': env('NAME'),
+        'USER': env('USER'),
+        'PASSWORD': env('PASSWORD'),
+        'HOST': env('HOST'),
+        'PORT': env('PORT'),
     }
 }
 

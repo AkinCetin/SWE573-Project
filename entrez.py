@@ -1,5 +1,10 @@
 # importing the requests library
 import django
+import environ
+
+
+env = environ.Env()
+environ.Env.read_env()
 import os
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
 
@@ -11,6 +16,7 @@ from SWE573_Project.models import ArticleModel
 from django.utils.text import slugify
 from bs4 import BeautifulSoup
 import requests
+
 
 
 

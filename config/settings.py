@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 import environ
-import django_heroku
 
 
 env = environ.Env()
@@ -97,7 +96,7 @@ DATABASES = {
         'NAME': 'medisearch',
         'USER': 'postgres',
         'PASSWORD': 'urahara1',
-        'HOST': 'localhost',
+        'HOST': 'host.docker.internal',
         'PORT': '5432',
     }
 }
@@ -185,6 +184,4 @@ LOGIN_REDIRECT_URL = 'homepage'
 #STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 #DEFAULT_FILE_STORAGE = 'config.storage_backend.MediaStorage'
-
-django_heroku.settings(locals())
 

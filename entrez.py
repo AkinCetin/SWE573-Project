@@ -27,7 +27,7 @@ for term in TERMS:
     r = requests.get(url=Search_URL, params={'term': term,
                                             # 'version': '2.0',
                                             'db': 'pubmed',
-                                            'retmax': '4000'
+                                            'retmax': '1000'
                                             })
 
     # extracting data in json format
@@ -121,8 +121,6 @@ for term in TERMS:
             if not article.find('articletitle').string:
                 continue
             
-
-
             General_article.append({'id': article.find('pmid').string, 'title': article.find('articletitle').string,
                                     'authors': ','.join(General_article_authors),
                                     'abstract': article.find('abstract').get_text() if article.find('abstract') else '',

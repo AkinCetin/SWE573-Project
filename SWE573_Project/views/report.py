@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect
 from SWE573_Project.forms import ReportForm 
 from SWE573_Project.models import ReportModel
 from SWE573_Project.models import ArticleModel
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url="/")
 def report(request, article_id):
     form = ReportForm() 
     if request.method == 'POST': 

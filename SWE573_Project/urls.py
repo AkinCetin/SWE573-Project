@@ -22,4 +22,5 @@ urlpatterns = [
     path('report/<int:article_id>', report, name = 'report'),
 
 
+
 ]

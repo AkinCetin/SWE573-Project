@@ -2,8 +2,10 @@ from django.shortcuts import render
 from SWE573_Project.models import ArticleModel
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 
 
+@login_required(login_url="/")
 def mainpage(request):
     search = request.GET.get('search')
     articles = ArticleModel.objects.order_by('-id')

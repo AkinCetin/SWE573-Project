@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from account.forms import creationForm
 from django.contrib import messages
 from django.contrib.auth import login, authenticate #bunlar kayıt olduğu an login olsun diye kullanılıyor
+from django.contrib.auth.decorators import login_required
+
 
 def createnewuser(request):
     if request.method == 'POST':

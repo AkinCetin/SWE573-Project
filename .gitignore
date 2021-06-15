@@ -6,3 +6,5 @@ media
 .env
 prod.sqlite3
 venv/
+data
+sql

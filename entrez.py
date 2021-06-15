@@ -3,8 +3,11 @@ import django
 import environ
 
 
-env = environ.Env()
-environ.Env.read_env()
+from dotenv import load_dotenv
+
+load_dotenv()  # take environment variables from .env.
+
+
 import os
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
 
@@ -27,13 +30,13 @@ Search_URL = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
 
 TERMS = ['lung', 'brain', 'cancer', 'hearth', 'liver', 'stomach', 'head']
 for term in TERMS:
-        
+    print('now the term', term, 'is being fetched')
 
     # sending get request and saving the response as response object
     r = requests.get(url=Search_URL, params={'term': term,
                                             # 'version': '2.0',
                                             'db': 'pubmed',
-                                            'retmax': '400'
+                                            'retmax': '1000'
                                             })
 
     # extracting data in json format
@@ -97,6 +100,11 @@ for term in TERMS:
                     last_name = ''
                 else:
                     last_name = last_name.string
+                
+                if not first_name:
+                    continue
+                if not last_name:
+                    continue
 
                 General_article_authors.append(
                     first_name + ' ' + last_name)
@@ -107,8 +115,10 @@ for term in TERMS:
                     keyword = ''
                 else:
                     keyword = keyword.string
+                
+                if keyword:
 
-                General_article_keywords.append(keyword)
+                    General_article_keywords.append(keyword)
 
             #print(General_article_keywords)
 

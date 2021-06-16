@@ -1,6 +1,5 @@
-from django.test import TestCase
+from django.test import TestCase, Client,TransactionTestCase
 from SWE573_Project.models import ArticleModel,ReportModel,TagModel
-from django.utils import timezone
 from django.db.utils import IntegrityError
 
 class ArticleTestCase(TestCase):
@@ -18,8 +17,6 @@ class ArticleTestCase(TestCase):
     def test_same_article(self):
         with self.assertRaises(IntegrityError):
             ArticleModel.objects.create(title="article title", body="article body", authors='author', pmid='1234', keywords='keyword1', slug='testslug')
-
-
 
 
 

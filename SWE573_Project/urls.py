@@ -1,5 +1,4 @@
 from django.urls import path, include
-from SWE573_Project.views import contact
 from SWE573_Project.views import mainpage
 from SWE573_Project.views import tag
 from SWE573_Project.views import details
@@ -12,7 +11,6 @@ urlpatterns = [
     path('', auth_views.LoginView.as_view(
         template_name = 'pages/login.html'
     ), name= 'login'),
-    path('contact', contact),
     path('aboutus', TemplateView.as_view(
         template_name='pages/aboutus.html'
     ), name = 'aboutus'),

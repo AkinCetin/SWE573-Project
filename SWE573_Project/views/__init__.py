@@ -1,4 +1,3 @@
-from .contact import contact
 from .mainpage import mainpage
 from .details import details
 from .report import report

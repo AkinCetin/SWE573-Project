@@ -1,5 +1,5 @@
 from django.contrib import admin
-from SWE573_Project.models import TagModel, ArticleModel, ContactModel, ReportModel
+from SWE573_Project.models import TagModel, ArticleModel, ReportModel
 
 
 
@@ -21,7 +21,6 @@ class ContactAdmin(admin.ModelAdmin):
     search_fields = ('name', 'email',)
     list_display = ('name', 'email', 'date',)
 
-admin.site.register(ContactModel, ContactAdmin)
 
 
 admin.site.register(ReportModel)

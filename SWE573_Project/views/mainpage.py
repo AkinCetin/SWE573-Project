@@ -5,7 +5,7 @@ from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 
 
-@login_required(login_url="/")
+@login_required(login_url="/login")
 def mainpage(request):
     search = request.GET.get('search')
     articles = ArticleModel.objects.order_by('-id')

@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 
 
 
-@login_required(login_url="/")
+@login_required(login_url="/login")
 def details(request, slug):
     article = get_object_or_404(ArticleModel, slug=slug)
     return render(request, 'pages/details.html', context={

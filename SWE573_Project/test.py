@@ -1,6 +1,9 @@
 from django.test import TestCase, Client,TransactionTestCase
 from SWE573_Project.models import ArticleModel,ReportModel,TagModel
+from account.models import CustomUserModel
 from django.db.utils import IntegrityError
+from django.contrib.auth import get_user_model
+
 
 class ArticleTestCase(TestCase):
     def setUp(self):
@@ -41,3 +44,13 @@ class ReportTestCase(TestCase):
     def test_report_created_properly(self):
         report = ReportModel.objects.get(message='report test message')
         self.assertEqual(report.message, 'report test message')
+
+class UserTestCase(TestCase):
+
+    User = get_user_model()
+
+    def setUp(self):
+        self.user = CustomUserModel.objects.create_user(username='testuset', email='test@test.com', password='testpassword')
+
+    def test_user(self):
+        self.assertEqual(self.user.email, 'test@test.com' )

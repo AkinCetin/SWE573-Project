@@ -20,7 +20,7 @@
           <p class="card-text">{{ article.body|safe|truncatechars_html:300 }}</p>
           <p class="card-text">Keyword(s): {{ article.keywords|safe }}</p> 
           <p class="card-text"><small class="text-muted">Publish Date {{ article.publish_date }}</small></p>
-          <p class="card-text"><small class="text-muted">Last Update {{ article.update_date|timesince }}</small></p>
+          <p class="card-text"><small class="text-muted">MediSearch Publish Date {{ article.update_date }}</small></p>
 
         </div>
       </div>
